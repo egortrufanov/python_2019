@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>University Info</title>
+</head>
+    <body>
+    <div><b>Университет:</b> {{ json_data.name }}.</div>
+    <div><b>Ректор:</b> {{ json_data.rector.sname }} {{ json_data.rector.name }} {{ json_data.rector.tname }}.</div>
+    <div><b>Местоположение:</b> {{ json_data.address.postalCode }}, {{ json_data.address.city }}, {{ json_data.address.streetaddress }}.</div>
+    <div><b>Кол-во административных подразделений:</b> {{ AdminUnitsCount }}.</div>
+    <div><b>Кол-во научно-образовательных подразделений:</b> 0.</div>
+    <div><b>Кол-во мегафакультетов: </b> {{ MegafacCount }}.</div>
+    <div><b>Кол-во факультетов:</b> {{ FacCount }}.</div>
+    </body>
+</html>

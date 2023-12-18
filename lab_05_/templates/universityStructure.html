@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>University Structure</title>
+</head>
+<body>
+<br>
+<div>Университет: {{ json.name }}. Ректор {{ json.rector.sname}} {{ name }}.{{ tname }}.</div>
+<pre><b>|_</b>Административные подразделения:</pre>
+{% for adm in json.subdivision.administration %}
+<pre><b>|  |_</b>{{adm.name}}</pre>
+{% if forloop.counter != json.subdivision.administration|length %}
+    {% for worker in adm.workers %}
+    <pre><b>|  | |_</b>{{ worker.sname }} {{ worker.name}}, ID: {{ worker.id }}</pre>
+    {% endfor %}
+    {% else %}
+    {% for worker in adm.workers %}
+    <pre><b>|    |_</b>{{ worker.sname }} {{ worker.name}}, ID: {{ worker.id }}</pre>
+    {% endfor %}
+    {% endif %}
+    {% endfor %}
+        <pre><b>|</b></pre>
+        <pre><b>|_</b>Научно-образовательные подразделения:</pre>
+        {% for mf in json.subdivision.studies.mf %}
+        {% if forloop.counter != json.subdivision.studies.mf|length %}
+            <pre><b>  |_</b>Мегафакультет {{mf.name}}</pre>
+                {% for f in mf.f %}
+                {% if forloop.counter != mf.f|length %}
+                <pre><b>  | |_</b>Факультет {{f.name}}</pre>
+                    {% for napr in f.napravleniye %}
+                        <pre><b>  | | |_</b>Кафедра {{ napr.name }}, номер: {{ napr.number }}. Заведующий кафедры: {{ napr.supervisor.sname }} {{ napr.supervisor.name }}, ID: {{ napr.supervisor.id }}</pre>
+                    {% endfor %}
+                {% else %}
+                <pre><b>  | |_</b>Факультет {{f.name}}</pre>
+                    {% for napr in f.napravleniye %}
+                        <pre><b>  |   |_</b>Кафедра {{ napr.name }}, номер: {{ napr.number }}. Заведующий кафедры: {{ napr.supervisor.sname }} {{ napr.supervisor.name }}, ID: {{ napr.supervisor.id }}</pre>
+                    {% endfor %}
+                    {% endif %}
+                    {% endfor %}
+        {% else %}
+            <pre><b>  |_</b>Мегафакультет {{mf.name}}</pre>
+                {% for f in mf.f %}
+                {% if forloop.counter != mf.f|length %}
+                <pre><b>    |_</b>Факультет {{f.name}}</pre>
+                    {% for napr in f.napravleniye %}
+                        <pre><b>    | |_</b>Кафедра {{ napr.name }}, номер: {{ napr.number }}. Заведующий кафедры: {{ napr.supervisor.sname }} {{ napr.supervisor.name }}, ID: {{ napr.supervisor.id }}</pre>
+                    {% endfor %}
+                {% else %}
+                <pre><b>    |_</b>Факультет {{f.name}}</pre>
+                    {% for napr in f.napravleniye %}
+                        <pre><b>      |_</b>Кафедра {{ napr.name }}, номер: {{ napr.number }}. Заведующий кафедры: {{ napr.supervisor.sname }} {{ napr.supervisor.name }}, ID: {{ napr.supervisor.id }}</pre>
+                    {% endfor %}
+                    {% endif %}
+                {% endfor %}
+        {% endif %}
+        {% endfor %}
+</body>
+</html>

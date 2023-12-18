@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Discipline Info</title>
+</head>
+{% for f in mf %}
+{% for napr in f.f %}
+{% for prog in napr.napravleniye %}
+{% for numb in prog.year %}
+<p><div><b>Номер:</b> {{ prog.number }}</div>
+<div><b>Название программы:</b> {{ prog.title }}</div>
+<div><b>Дисциплина:</b> {{ prog.name }}</div>
+<div><b>Год обучения:</b> {{ numb.number }}</div>
+<div><b>Кол-во групп:</b> {{ numb.group|length }}</div>
+{% endfor %}
+{% endfor %}
+{% endfor %}
+{% endfor %}
+</body>
+</html>
